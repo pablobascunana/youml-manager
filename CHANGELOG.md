@@ -2,7 +2,7 @@
 
 All notable changes will be documented in this file
 
-## [0.0.1](https://github.com/pablobascunana/youml-manager/compare/33cfc97...develop) (WIP)
+## [0.0.1](https://github.com/pablobascunana/youml-manager/compare/33cfc97...306e2bb) (23-11-2022)
 
 * [PR-4](https://github.com/pablobascunana/youml-manager/pull/4) Dependabot configuration
 * [PR-3](https://github.com/pablobascunana/youml-manager/pull/3) Add Codacy configuration
