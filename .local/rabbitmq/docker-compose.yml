@@ -1,4 +1,4 @@
-version: '3' # requires Docker Compose 1.13 or later
+version: '3'
 services:
   rabbitmq:
     image: 'rabbitmq:management'
@@ -8,5 +8,5 @@ services:
         RABBITMQ_DEFAULT_USER: "rabbitmq"
         RABBITMQ_DEFAULT_PASS: "rabbitmq"
     ports:
-      - '5672:5672' # The standard AMQP protocol port
-      - '15672:15672' # HTTP management UI
+      - '5672:5672'
+      - '15672:15672'
