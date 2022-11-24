@@ -26,7 +26,7 @@ pipenv install
 
 ## Install RabbitMQ in local environment
 
-You should install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and execute the ç
+You should install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and execute the
 **docker-compose.yml** inside **.local/rabbitmq** directory, to do this, place in the specified directory and execute
 the following command:
 
