@@ -9,7 +9,7 @@
 * Create virtual environment
 
 ```shell
-python -m venv <venv name>
+python3 -m venv <venv name>
 ```
 
 * Install pipenv
