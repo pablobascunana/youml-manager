@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+djangorestframework-camel-case = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
