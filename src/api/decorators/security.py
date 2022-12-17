@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 
-from api.viewsets.services.jwt import JwtToken
+from api.services.jwt import JwtToken
 
 AUTHORIZATION_KEY = 'Authorization'
 

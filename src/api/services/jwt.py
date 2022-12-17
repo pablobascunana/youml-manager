@@ -5,13 +5,12 @@ import jwt
 from django.conf import settings
 from jwt.exceptions import InvalidSignatureError, ExpiredSignatureError
 
-from api.viewsets.utils.date import date_now_plus_delta_in_minutes
+from api.utils.date import date_now_plus_delta_in_minutes
 
 BEARER = 'Bearer'
 
 
 class JwtToken:
-
     @staticmethod
     def encode(payload: Dict) -> str:
         payload['exp'] = date_now_plus_delta_in_minutes(1)
