@@ -8,8 +8,13 @@ django = "*"
 djangorestframework = "*"
 djangorestframework-camel-case = "*"
 python-dotenv = "*"
+pyjwt = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-django = "*"
+pytest-cov = "*"
+tox = "*"
 
 [requires]
 python_version = "3.8"
