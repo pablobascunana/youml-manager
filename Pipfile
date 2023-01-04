@@ -7,13 +7,13 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 djangorestframework-camel-case = "*"
-python-dotenv = "*"
 pyjwt = "*"
+python-dotenv = "*"
 
 [dev-packages]
 pytest = "*"
-pytest-django = "*"
 pytest-cov = "*"
+pytest-django = "*"
 tox = "*"
 
 [requires]
