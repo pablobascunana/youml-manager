@@ -8,7 +8,6 @@ django = "*"
 djangorestframework = "*"
 djangorestframework-camel-case = "*"
 pika = "*"
-pyjwt = "*"
 python-dotenv = "*"
 
 [dev-packages]
