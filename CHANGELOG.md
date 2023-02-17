@@ -5,6 +5,7 @@ All notable changes will be documented in this file
 ## [0.0.2](https://github.com/pablobascunana/youml-manager/compare/d51b3d7...develop) (WIP)
 
 ### Added
+* [PR-38](https://github.com/pablobascunana/youml-manager/pull/38) Configure console logging
 * [PR-24](https://github.com/pablobascunana/youml-manager/pull/19) Create RabbitMQ consumer command
 * [PR-9](https://github.com/pablobascunana/youml-manager/pull/9) Create JWT token security and add decorator to secure views
 * [PR-7](https://github.com/pablobascunana/youml-manager/pull/7) Create Django project
