@@ -19,6 +19,11 @@ jobs:
           echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> src/.env
           echo "DJANGO_DEBUG=${{ secrets.DJANGO_DEBUG }}" >> src/.env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> src/.env
+          echo "RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}" >> src/.env
+          echo "RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}" >> src/.env
+          echo "RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}" >> src/.env
+          echo "RABBITMQ_VHOST=${{ secrets.RABBITMQ_VHOST }}" >> src/.env
+          echo "RABBITMQ_QUEUE_NAME=${{ secrets.RABBITMQ_QUEUE_NAME }}" >> src/.env
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
