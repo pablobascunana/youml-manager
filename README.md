@@ -67,3 +67,34 @@ docker compose up
 ```
 
 To access to **RabbitMQ** UI management use the following URL: [UI Management](http://localhost:15672)
+
+## Install Minikube in local environment
+
+....
+
+```shell
+minikube start
+```
+
+#### Work with Kubernetes
+
+Start job from yaml file:
+```shell
+kubectl apply -f <FILENAME>.yaml 
+```
+Get pods:
+```shell
+kubectl get pods 
+```
+Obtain more information about pods:
+```shell
+kubectl describe pods
+```
+Get log of specific pod:
+```shell
+kubectl logs <POD-NAME> -f
+```
+Delete job
+```shell
+kubectl delete job <JOB_NAME> 
+```
