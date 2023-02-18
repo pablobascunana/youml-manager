@@ -5,8 +5,6 @@ from typing import Dict
 from kubernetes import client, config
 from kubernetes.client import BatchV1Api, V1Job
 
-from core.decorators import async_thread
-
 logger = logging.getLogger("youML-manager")
 
 
@@ -27,7 +25,6 @@ class KubernetesJobManager:
         return client.V1Job(api_version='batch/v1', kind='Job', metadata=client.V1ObjectMeta(name=job_name), spec=spec)
 
     @staticmethod
-    # @async_thread
     def create_job(api_instance: BatchV1Api, job: V1Job):
         api_response = api_instance.create_namespaced_job(body=job, namespace='default')
         logger.info(f"Job created: status={api_response.status}")
