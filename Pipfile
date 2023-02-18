@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 djangorestframework-camel-case = "*"
+kubernetes = "*"
 pika = "*"
 python-dotenv = "*"
 
