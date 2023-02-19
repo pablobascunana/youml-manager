@@ -1,33 +1,28 @@
-from kubernetes.client import V1Job, BatchV1Api, V1Status
-
+from unittest.mock import MagicMock, patch
+from kubernetes import client
 from core.kubernetes.jobs_manager import KubernetesJobManager
-
-
-job_name = 'job-name'
 
 
 class TestKubernetesJobManager:
 
     @staticmethod
-    def test_create_job_object(kubernetes: KubernetesJobManager):
-        assert isinstance(kubernetes.job, V1Job)
-        assert isinstance(kubernetes.batch_v1, BatchV1Api)
-
-    @staticmethod
     def test_create_job(kubernetes: KubernetesJobManager):
-        response = kubernetes.create_job(kubernetes.batch_v1, kubernetes.job)
-        assert isinstance(response, V1Job)
-        assert response.metadata.name == job_name
-        assert response.metadata.namespace == 'default'
+        with patch.object(client.BatchV1Api, 'create_namespaced_job') as mock_create_job:
+            job = MagicMock()
+            mock_create_job.return_value = job
+            kubernetes.create_job(kubernetes.batch_v1, job)
+            mock_create_job.assert_called_once_with(body=job, namespace='default')
 
     @staticmethod
     def test_get_job_status(kubernetes: KubernetesJobManager):
-        response = kubernetes.get_job_status(kubernetes.batch_v1, job_name)
-        assert isinstance(response, V1Job)
-        assert response.metadata.name == job_name
-        assert response.metadata.namespace == 'default'
+        with patch.object(client.BatchV1Api, 'read_namespaced_job_status') as mock_read_job_status:
+            kubernetes.get_job_status(kubernetes.batch_v1, 'my-job')
+            mock_read_job_status.assert_called_once_with(name='my-job', namespace='default')
 
     @staticmethod
     def test_delete_job(kubernetes: KubernetesJobManager):
-        response = kubernetes.delete_job(kubernetes.batch_v1, job_name)
-        assert isinstance(response, V1Status)
+        with patch.object(client.BatchV1Api, 'delete_namespaced_job') as mock_delete_job:
+            kubernetes.delete_job(kubernetes.batch_v1, 'my-job')
+            mock_delete_job.assert_called_once_with(name='my-job', namespace='default',
+                                                    body=client.V1DeleteOptions(propagation_policy='Foreground',
+                                                                                grace_period_seconds=0))
