@@ -1,14 +1,5 @@
-# from unittest.mock import MagicMock, patch
-# from kubernetes import client
-# from core.kubernetes.jobs_manager import KubernetesJobManager
-#
-#
-
-
-import pytest
-from unittest.mock import patch, MagicMock, Mock
+from unittest.mock import patch, MagicMock
 from kubernetes import config
-from kubernetes.client import BatchV1Api, V1Job
 from core.kubernetes.jobs_manager import KubernetesJobManager
 
 
