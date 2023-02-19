@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-images-job
+  labels:
+    name: train-images
+spec:
+  template:
+    spec:
+      containers:
+      - name: train-images
+        image: hello-world
+        imagePullPolicy: Always
+        env:
+          - name: DATASET_UUID
+            value: "e5129a2992c64655b0b094708bc12a6c"
+          - name: DATASET_PATH
+            value: "/var/tmp/youML/proyecto_1/3817d2da-bbdb-4fb8-bfc5-b43a63c29508"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "200Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+      restartPolicy: Never
