@@ -1,8 +1,15 @@
 import pytest
 
-from core.kubernetes.jobs_manager import KubernetesJobManager
+from unittest.mock import patch
 
 
-@pytest.fixture()
-def kubernetes():
-    return KubernetesJobManager('job-name', 'hello-world', params={"dataset": "1234", "path": "/path/to/images"})
+@pytest.fixture
+def mock_api():
+    with patch("core.kubernetes.jobs_manager.client.BatchV1Api") as mock_api:
+        yield mock_api
+
+
+@pytest.fixture
+def mock_job():
+    with patch("core.kubernetes.jobs_manager.client.V1Job") as mock_job:
+        yield mock_job

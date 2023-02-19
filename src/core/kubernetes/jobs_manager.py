@@ -11,10 +11,10 @@ logger = logging.getLogger("youML-manager")
 class KubernetesJobManager:
 
     def __init__(self, job_name: str, container_image_name: str, params: Dict[str, str]):
-        # try:
-        #     config.load_kube_config()
-        # except Exception:
-        config.load_incluster_config()
+        try:
+            config.load_kube_config()
+        except Exception:
+            config.load_incluster_config()
         self.batch_v1 = client.BatchV1Api()
         self.job = self._create_job_object(job_name, container_image_name, params)
 
