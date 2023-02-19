@@ -70,13 +70,14 @@ To access to **RabbitMQ** UI management use the following URL: [UI Management](h
 
 ## Install Minikube in local environment
 
-....
+Follow the steps to install [Minikube](https://minikube.sigs.k8s.io/docs/start/).
 
+To start Minikube once it is installed:
 ```shell
 minikube start
 ```
 
-#### Work with Kubernetes
+#### Commands to work with Kubernetes in development
 
 Start job from yaml file:
 ```shell
