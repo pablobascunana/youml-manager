@@ -18,7 +18,11 @@ class KubernetesJobManager:
     @staticmethod
     def _create_job_object(job_name: str, image_name: str, params: Dict[str, str]):
         container = client.V1Container(name=job_name, image=image_name,
-                                       image_pull_policy="Always")  # args=[params["dataset"], params["path"]]
+                                       env=[client.V1EnvVar(name="DATASET_UUID", value=params["dataset"]),
+                                            client.V1EnvVar(name="DATASET_PATH", value=params["path"])],
+                                       resources=client.V1ResourceRequirements(
+                                           requests={"cpu": "100m", "memory": "200Mi"},
+                                           limits={"cpu": "500m", "memory": "500Mi"}))
         template = client.V1PodTemplateSpec(metadata=client.V1ObjectMeta(labels={'name': job_name}),
                                             spec=client.V1PodSpec(restart_policy='Never', containers=[container]))
         spec = client.V1JobSpec(template=template)
