@@ -3,7 +3,7 @@ import time
 from typing import Dict
 
 from kubernetes import client, config
-from kubernetes.client import BatchV1Api, V1Job, V1Status
+from kubernetes.client import BatchV1Api, V1Job
 
 logger = logging.getLogger("youML-manager")
 
@@ -25,13 +25,12 @@ class KubernetesJobManager:
         return client.V1Job(api_version='batch/v1', kind='Job', metadata=client.V1ObjectMeta(name=job_name), spec=spec)
 
     @staticmethod
-    def create_job(api_instance: BatchV1Api, job: V1Job) -> V1Job:
+    def create_job(api_instance: BatchV1Api, job: V1Job):
         api_response = api_instance.create_namespaced_job(body=job, namespace='default')
         logger.info(f"Job created: status={api_response.status}")
-        return api_response
 
     @staticmethod
-    def get_job_status(api_instance: BatchV1Api, job_name: str) -> V1Job:
+    def get_job_status(api_instance: BatchV1Api, job_name: str):
         job_completed = False
         while not job_completed:
             response = api_instance.read_namespaced_job_status(name=job_name, namespace="default")
@@ -39,15 +38,10 @@ class KubernetesJobManager:
                 job_completed = True
             time.sleep(1)
             logger.info(f"Job status: status={response.status}")
-        return response
 
     @staticmethod
-    def delete_job(api_instance: BatchV1Api, job_name: str) -> V1Status:
+    def delete_job(api_instance: BatchV1Api, job_name: str):
         api_response = api_instance.delete_namespaced_job(name=job_name, namespace='default',
                                                           body=client.V1DeleteOptions(propagation_policy='Foreground',
                                                                                       grace_period_seconds=0))
         logger.info(f"Job deleted: status={api_response.status}")
-        return api_response
-
-    # TODO: Add args in V1Container
-    # TODO: Mock Kubernetes in unit tests
