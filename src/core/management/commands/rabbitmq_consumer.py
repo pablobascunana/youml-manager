@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import Dict
 
 import pika
@@ -7,6 +8,8 @@ from django.core.management.base import BaseCommand
 from pika import BlockingConnection, BasicProperties
 from pika.adapters.blocking_connection import BlockingChannel
 from pika.spec import Basic
+
+logger = logging.getLogger("youML-manager")
 
 
 class Command(BaseCommand):
@@ -39,10 +42,10 @@ class Command(BaseCommand):
 
     def consume_message(self, channel: BlockingChannel, queue_name: str):
         channel.basic_consume(queue=queue_name, on_message_callback=self.on_message, auto_ack=True)
-        print('Subscribed to train, waiting for messages...')
+        logger.info('Subscribed to train queue, waiting for messages...')
         channel.start_consuming()
 
     @staticmethod
     def on_message(channel: BlockingChannel, method: Basic.Deliver, properties: BasicProperties, body: bytes):
         message = body.decode('UTF-8')
-        print(message)
+        logger.info(message)
